@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    list-style-type: none;
+    align-items: center;
+    font-size: 15px;
+}
+
+.nav li {
+    display: inline-block;
+    padding-right: 25px;
+    margin-left: 10px;
+}
+
+.nav a {
+    color: black
+}
+
+.food {
+    font-size: 25px;
+}
+
+
+.body {
+    background-color:#809d66;
+}
+
+/* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
+
+.mainContainer {
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+}
+    
+.div1 {
+    grid-column: span 2 / span 2;
+    grid-row: span 4 / span 4;
+    /* border: 1px solid #000; */
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    /* border: 1px solid #000; */
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 3;
+    border: 1px solid #000;
+}
+
+.div4 {
+    grid-column-start: 3;
+    grid-row-start: 4;
+    /* border: 1px solid #000; */
+}
+
+.div5 {
+    grid-column-start: 4;
+    grid-row-start: 4;
+    /* border: 1px solid #000; */
+}
+
+.creatureContainer {
+    max-width: 1000px;
+    position: relative;
+    margin: auto; 
+}
+
+.creature img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 10%;
+}
+
+.creature {
+    display: none;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+  
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+.weatherContainer {
+    padding-top: 10%;
+    padding-right: 10%;
+}
+
+.learnBtnContainer {
+    padding-top: auto;
+    padding-right: auto;
+    margin-top: 10%;
+}
+
+.learnButton {
+    display: block;
+    margin: 0 auto;
+    color: black;
+    font-size: 20px;
+    background-color: green;
+    padding: 5%;
+    border-radius: 5px;
+}
+
+.feedContainer {
+    padding-top: auto;
+    padding-right: auto;
+    margin-top: 10%;
+}
+
+.feedButton {
+    display: block;
+    margin: 0 auto;
+    color: black;
+    font-size: 20px;
+    background-color: green;
+    padding: 5%;
+    border-radius: 5px;
+}
+
+/* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
+    
+.quizContainer {
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+    
+.div6 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    border: 1px solid #000;
+}
+
+.div7 {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-row-start: 3;
+    border: 1px solid #000;
+}
+
+/* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
+   
+.lessonContainer {
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.dropdownContainer {
+    max-width: 1000px;
+    position: relative;
+    margin: auto; 
+    /* border: 1px solid #000; */
+}
+
+.dropdown { 
+    display: block;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 15%;
+    /* border: 1px solid #000; */
+}
+
+/* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
+  
+.learnContainer {
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
