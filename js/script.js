@@ -28,41 +28,38 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+// Function to save the current avatar
 function saveAvatar() {
-  // Get the selected avatar's data attribute (this is just an example)
-  const selectedAnimal = document.querySelector('.creature.selected img').dataset.animal;
+  // Get the animal name based on the currently displayed slide
+  const creatures = ['crab', 'frog', 'cat', 'dog']; // List should match the order of your slides
+  const selectedAnimal = creatures[slideIndex - 1];
 
   if (!selectedAnimal) {
-    alert('Please select an avatar.');
+    alert('Could not find the selected animal.');
     return;
   }
 
-  // Send the selected animal to the server
-  fetch('save_avatar.php', {
+  // Send a POST request to the PHP script to save the selected animal
+  fetch('../save_avatar.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({ animal: selectedAnimal }),
   })
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'success') {
-        alert(`Avatar saved as ${data.animal}`);
-      } else {
-        alert('Failed to save avatar.');
-      }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// Example function to select an avatar (toggle selection for simplicity)
-document.querySelectorAll('.creature').forEach(creature => {
-  creature.addEventListener('click', () => {
-    document.querySelectorAll('.creature').forEach(c => c.classList.remove('selected'));
-    creature.classList.add('selected');
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      alert(`Saved animal to be: ${data.animal}`);
+    } else {
+      alert(`Failed to save animal: ${data.message}`);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('An error occurred while saving the animal.');
   });
-});
+}
 / ```````````````````````````````````````````````````````````````````````````````````````````````````` / 
 
 var subjectObject = {
