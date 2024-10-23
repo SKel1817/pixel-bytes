@@ -111,7 +111,19 @@ class Display:
             print(toggleName3)
             animation = ac.Animate(baseName, toggleName1)
             animation.sadAnimate(toggleName2, toggleName3)
+    def get_animal_data(self):
+        try:
+            response = requests.get('http://<vm-ip>/save_avatar.php')
+            response.raise_for_status()
+            data = response.json()
+            animal = data.get('animal', 'default animal')
+            print(f'The animal to display is: {animal}')
+            # Add logic to display the animal on the Pi
+        except requests.exceptions.RequestException as e:
+            print(f'Error fetching animal data: {e}')
 
+if __name__ == "__main__":
+    get_animal_data()
     def animalIndex(self, name):
         r = (255, 0, 0)  # Red
         o = (225, 125, 0) # Orange

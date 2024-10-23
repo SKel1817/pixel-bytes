@@ -1,33 +1,28 @@
 # from AnimalClass import Animal as ab
 import DisplayClass
-from sense_hat import SenseHat
-import threading
+import requests
+def get_animal_data():
+    try:
+        response = requests.get('http://104.197.69.67/save_avatar.php')
+        response.raise_for_status()
+        data = response.json()
+        animal = data.get('animal', 'default animal')
+        print(f'The animal to display is: {animal}')
+        default_animal = animal
+        # Add logic to display the animal on the Pi
+    except requests.exceptions.RequestException as e:
+        print(f'Error fetching animal data: {e}')
 
+if __name__ == "__main__":
+    get_animal_data()
 
 print("Welcome to this program god I hope it works better now")
 default_animal = "crab"
-# def event_has_happened(callback):
-#     sense = SenseHat()
-#     while True:
-#         event = sense.stick.wait_for_event()  # Blocking call
-#         direction = event.direction
-#         callback(direction)
-# def handle_direction(direction):
-#     global default_animal
-#     if direction == "up":
-
-#         new_animal = animal.menuScreen()
-#         print(new_animal)
-#         default_animal = new_animal
-#         return direction
 while True:
     animal = DisplayClass.Display(default_animal)
     animal.defaultScreen()
-    print("made it here")
-    sense = SenseHat()
-    event = event = sense.stick.wait_for_event()
-    if event.direction  == "middle":
-        print("print here!")
-        new_animal = animal.menuScreen()
-        print(new_animal)
-        default_animal = new_animal
+    get_animal_data()
+
+
+
+

@@ -28,6 +28,41 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+function saveAvatar() {
+  // Get the selected avatar's data attribute (this is just an example)
+  const selectedAnimal = document.querySelector('.creature.selected img').dataset.animal;
+
+  if (!selectedAnimal) {
+    alert('Please select an avatar.');
+    return;
+  }
+
+  // Send the selected animal to the server
+  fetch('save_avatar.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({ animal: selectedAnimal }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        alert(`Avatar saved as ${data.animal}`);
+      } else {
+        alert('Failed to save avatar.');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Example function to select an avatar (toggle selection for simplicity)
+document.querySelectorAll('.creature').forEach(creature => {
+  creature.addEventListener('click', () => {
+    document.querySelectorAll('.creature').forEach(c => c.classList.remove('selected'));
+    creature.classList.add('selected');
+  });
+});
 / ```````````````````````````````````````````````````````````````````````````````````````````````````` / 
 
 var subjectObject = {
