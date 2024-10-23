@@ -3,6 +3,7 @@
 # Variables
 WEB_ROOT="/var/www/html"
 BACKUP_DIR="/home/USER/backups"
+MONITOR_LOG="/var/log/server_monitor.log"
 
 # Function to backup website files and database
 backup() {
