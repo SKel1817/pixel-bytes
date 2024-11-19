@@ -28,6 +28,71 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+$(document).ready(function() {
+    // Update hunger level immediately upon page load and every 12 hours
+    function updateHungerLevel() {
+        $.ajax({
+            url: 'https://hunger-tracker-770213444308.us-central1.run.app/manage_hunger',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                const hungerLevel = data.hunger_level;
+                $('#hungerLevel').text(hungerLevel);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('There was a problem with the AJAX operation:', textStatus, errorThrown);
+            }
+        });
+    }
+
+    updateHungerLevel();
+    setInterval(updateHungerLevel, 43200000); // 12 hours in milliseconds
+
+    // Feed Function
+    function feed() {
+        $.ajax({
+            url: 'https://hunger-tracker-770213444308.us-central1.run.app/manage_hunger',
+            method: 'POST',
+            success: function(data) {
+                console.log('Feed success:', data);
+
+                // Update hunger level immediately after feeding
+                if (data.hunger_level !== undefined) {
+                    $('#hungerLevel').text(data.hunger_level);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Feed error:', textStatus, errorThrown);
+            }
+        });
+    }
+
+    // Starve Function
+    function starve() {
+        $.ajax({
+            url: 'https://hunger-tracker-770213444308.us-central1.run.app/manage_hunger',
+            method: 'DELETE',
+            success: function(data) {
+                console.log('Starve success:', data);
+
+                // Update hunger level immediately after starving
+                if (data.hunger_level !== undefined) {
+                    $('#hungerLevel').text(data.hunger_level);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Starve error:', textStatus, errorThrown);
+            }
+        });
+    }
+
+    // Assign button click events
+    $('#feed').on('click', feed);
+    $('#starve').on('click', starve);
+});
+
+
+
 // Function to save the current avatar
 function saveAvatar() {
   // Get the animal name based on the currently displayed slide
@@ -105,4 +170,3 @@ window.onload = function() {
     }
   }
 }
-
