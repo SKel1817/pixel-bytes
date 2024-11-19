@@ -7,8 +7,8 @@
     <!--Link to favicon-->
     <link rel="PixelBytes Icon" href="./media/gear.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/script.js"></script>
-
   </head>
 
 <header>
@@ -17,7 +17,7 @@
         <div class="logo">PixelBytes</div>
         <div class="food">
             <img src="./media/gear.png" alt="PixelBytes Logo" height="20px" />
-            0
+            <span id="hungerLevel"></span>
         </div>
         <ul>
           <li><a href="./index.html">Home</a></li>
@@ -78,7 +78,8 @@
         </div>
         <div class="div5">
           <div class="feedContainer">
-            <button class="feedButton">FEED</button>
+            <button id="feed" class="feedButton">FEED</button>
+            <button id="starve" class="starveButton">STARVE for testing only</button>
           </div>
         </div>
     </div>
