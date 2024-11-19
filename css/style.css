@@ -179,6 +179,11 @@ nav {
     border-radius: 5px;
 }
 
+.feedButton:disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
 /* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
     
 .quizContainer {
@@ -209,6 +214,70 @@ nav {
     grid-row: span 3 / span 3;
     grid-row-start: 3;
     border: 1px solid #000;
+}
+
+/* ```````````````````````````````````````````````````````````````````````````````````````````````````` */
+
+.questionContainer {
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.div8 {
+    grid-column: span 5 / span 5;
+    grid-row: span 2 / span 2;
+    border: 1px solid #000;
+}
+
+.div9 {
+    grid-column: span 5 / span 5;
+    grid-row-start: 3;
+    border: 1px solid #000;
+}
+
+.div10 {
+    grid-column: span 5 / span 5;
+    grid-row-start: 4;
+    border: 1px solid #000;
+}
+
+.div11 {
+    grid-column: span 5 / span 5;
+    grid-row-start: 5;
+    border: 1px solid #000;
+}
+
+.div12 {
+    grid-column: span 5 / span 5;
+    grid-row-start: 6;
+    border: 1px solid #000;
+}
+
+.questionContainer div {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.questionContainer div:hover:not(.div8) {
+    background-color: #7e9682;
+}
+
+.selected {
+    background-color: #536456;
 }
 
 /* ```````````````````````````````````````````````````````````````````````````````````````````````````` */

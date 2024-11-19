@@ -28,6 +28,23 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+// Function to re-enable the feed button 
+function enableFeedButton() {
+  const feedButton = document.getElementById('feed');
+  feedButton.disabled = false;
+  feedButton.style.filter = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const answers = document.querySelectorAll('.questionContainer > div:not(.div8)');
+    answers.forEach(answer => {
+        answer.addEventListener('click', () => {
+            answers.forEach(a => a.classList.remove('selected'));
+            answer.classList.add('selected');
+        });
+    });
+});
+
 $(document).ready(function() {
     // Update hunger level immediately upon page load and every 12 hours
     function updateHungerLevel() {
