@@ -1,0 +1,27 @@
+[
+    {
+        "question": "What is the output of the following code: print(2 ** 3)?",
+        "answers": ["5", "6", "7", "8"],
+        "correct": 3
+    },
+    {
+        "question": "Which of the following is a mutable data type in Python?",
+        "answers": ["Tuple", "String", "List", "Integer"],
+        "correct": 2
+    },
+    {
+        "question": "What is the correct way to create a function in Python?",
+        "answers": ["function myFunction():", "def myFunction():", "create myFunction():", "function:myFunction()"],
+        "correct": 1
+    },
+    {
+        "question": "Which keyword is used to define a class in Python?",
+        "answers": ["class", "def", "function", "method"],
+        "correct": 0
+    },
+    {
+        "question": "What is the output of the following code: print('Hello, World!'.lower())?",
+        "answers": ["HELLO, WORLD!", "hello, world!", "Hello, World!", "hello, World!"],
+        "correct": 1
+    }
+]
