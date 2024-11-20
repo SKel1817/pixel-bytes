@@ -23,5 +23,55 @@
         "question": "What is the output of the following code: print('Hello, World!'.lower())?",
         "answers": ["HELLO, WORLD!", "hello, world!", "Hello, World!", "hello, World!"],
         "correct": 1
+    },
+    {
+        "question": "What is the output of the following code: print(type([]))?",
+        "answers": ["<class 'list'>", "<class 'tuple'>", "<class 'dict'>", "<class 'set'>"],
+        "correct": 0
+    },
+    {
+        "question": "Which of the following is used to handle exceptions in Python?",
+        "answers": ["try/except", "if/else", "for/while", "def/class"],
+        "correct": 0
+    },
+    {
+        "question": "What is the output of the following code: print(len('Python'))?",
+        "answers": ["5", "6", "7", "8"],
+        "correct": 1
+    },
+    {
+        "question": "Which of the following methods can be used to add an element to a list in Python?",
+        "answers": ["append()", "add()", "insert()", "extend()"],
+        "correct": 0
+    },
+    {
+        "question": "What is the output of the following code: print('Python'.upper())?",
+        "answers": ["python", "PYTHON", "Python", "PYthon"],
+        "correct": 1
+    },
+    {
+        "question": "Which of the following is a built-in function in Python?",
+        "answers": ["print()", "factorial()", "sqrt()", "random()"],
+        "correct": 0
+    },
+    {
+        "question": "What is the output of the following code: print(10 // 3)?",
+        "answers": ["3.33", "3", "4", "3.0"],
+        "correct": 1
+    },
+    {
+        "question": "Which of the following is the correct way to import a module in Python?",
+        "answers": ["import module_name", "include module_name", "using module_name", "require module_name"],
+        "correct": 0
+    },
+    {
+        "question": "What is the output of the following code: print('Hello' + ' ' + 'World')?",
+        "answers": ["HelloWorld", "Hello World", "Hello  World", "Hello, World"],
+        "correct": 1
+    },
+    {
+        "question": "Which of the following is used to create an empty set in Python?",
+        "answers": ["{}", "[]", "()", "set()"],
+        "correct": 3
     }
 ]
