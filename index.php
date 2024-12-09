@@ -1,3 +1,13 @@
+<?php
+require_once('./connection.php');
+//write a query to get curr_avatar from most recent row
+$projectId = 'nielson-4160-f24';
+$query = "SELECT curr_avatar FROM `pixelbytes.user_data` ORDER BY DATE DESC LIMIT 1";
+$returned_arr = selectTable($projectId, $query);
+$curr_avatar = $returned_arr[0]['curr_avatar'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,20 +20,47 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/script.js"></script>
   </head>
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const feedButton = document.getElementById('feed');
+            if (urlParams.has('feed_enabled') && urlParams.get('feed_enabled') === 'true') {
+                if (feedButton) {
+                    feedButton.disabled = false;
+                    feedButton.style.filter = 'none';
+                    <?php
+                    // write a query to insert question_answered in user_data
+                    $projectId = 'nielson-4160-f24';
+                    // date variable
+                    $date = date("Y-m-d");
+                    $query = "INSERT INTO `pixelbytes.user_data` (Date, question_answered) VALUES ($date, true)";
+                    insertTable($projectId, $query);
+                    ?>
+                }
+            }
 
+            if (feedButton) {
+                feedButton.addEventListener('click', function() {
+                    feedButton.disabled = true;
+                    feedButton.style.filter = 'grayscale(100%)';
+                    // Optionally, you can add code here to handle the feed action
+                });
+            }
+        });
+  </script>
 <header>
     <nav class="nav">
-        <a href="./index.html"><img src="./media/gear.png" alt="PixelBytes Logo" height="25px" /></a>
+        <a href="./index.php"><img src="./media/gear.png" alt="PixelBytes Logo" height="25px" /></a>
         <div class="logo">PixelBytes</div>
         <div class="food">
             <img src="./media/gear.png" alt="PixelBytes Logo" height="20px" />
             <span id="hungerLevel"></span>
         </div>
         <ul>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./html/learn.html">Learn</a></li>
-          <li><a href="./html/lessons.html">Lessons</a></li>
-          <!-- <li><a href="./html/login.html">Login</a></li> ? -->
+          <li><a href="./index.php">Home</a></li>
+          <li><a href="./html/learn.php">Learn</a></li>
+          <li><a href="./html/lessons.php">Lessons</a></li>
+          <!-- <li><a href="./html/login.php">Login</a></li> ? -->
         </ul>
       </nav>
 </header>
@@ -31,7 +68,28 @@
   <body class="body">
     <div class="mainContainer">
         <div class="div1">
+          <script>
+          // assign $curr_avatar to apporpriate creature number (crab = 1, frog = 2, cat = 3, dog = 4)
+          var curr_avatar = <?php echo $curr_avatar; ?>;
+          //assign the current slide to the current avatar
+          if curr_avatar == "crab" {
+            var index = 1;
+          }
+          else if curr_avatar == "frog" {
+            var index = 2;
+          }
+          else if curr_avatar == "cat" {
+            var index = 3;
+          }
+          else if curr_avatar == "dog" {
+            var index = 4;
+          }
+          else {
+            var index = 1;
+          }
+          let slideIndex = index;
 
+          </script>
           <div class="creatureContainer">
             <div class="creature">
               <img src="./media/Creature/Crab.png" style="width: 80%">
@@ -75,7 +133,7 @@
         </div>
         <div class="div4">
           <div class="learnBtnContainer">
-            <a href="./html/learn.html"><button class="learnButton">LEARN</button></a>
+            <a href="./html/learn.php"><button class="learnButton">LEARN</button></a>
           </div>
         </div>
         <div class="div5">
