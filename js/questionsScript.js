@@ -1,51 +1,66 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('../questions.json')
-        .then(response => response.json())
-        .then(data => {
-            let currentQuestionIndex = 0;
-            const questionElement = document.getElementById('question');
-            const answerElements = [
-                document.getElementById('answer1'),
-                document.getElementById('answer2'),
-                document.getElementById('answer3'),
-                document.getElementById('answer4')
-            ];
-            const submitButton = document.getElementById('submit');
+document.addEventListener('DOMContentLoaded', function () {
+    let currentQuestionIndex = 0;
 
-            function loadQuestion(questionIndex) {
-                const questionData = data[questionIndex];
-                questionElement.textContent = questionData.question;
-                answerElements.forEach((element, index) => {
-                    element.textContent = questionData.answers[index];
-                    element.classList.remove('selected', 'correct', 'incorrect');
-                    element.onclick = () => selectAnswer(index);
-                });
-            }
+    const questionElement = document.getElementById('question');
+    const answerElements = [
+        document.getElementById('answer1'),
+        document.getElementById('answer2'),
+        document.getElementById('answer3'),
+        document.getElementById('answer4')
+    ];
 
-            function selectAnswer(selectedIndex) {
-                answerElements.forEach(element => element.classList.remove('selected'));
-                answerElements[selectedIndex].classList.add('selected');
-            }
+    function loadQuestion(index) {
+        if (index >= questions.length) {
+            alert('No more questions available!');
+            window.location.href = '../index.php';
+            return;
+        }
 
-            submitButton.onclick = () => {
-                const selectedAnswer = answerElements.findIndex(element => element.classList.contains('selected'));
-                if (selectedAnswer === -1) {
-                    alert('Please select an answer.');
-                    return;
-                }
-                const correctAnswer = data[currentQuestionIndex].correct;
-                if (selectedAnswer === correctAnswer) {
-                    answerElements[selectedAnswer].classList.add('correct');
-                    alert('Correct!');
-                } else {
-                    answerElements[selectedAnswer].classList.add('incorrect');
-                    alert('Incorrect. The correct answer is ' + data[currentQuestionIndex].answers[correctAnswer] + '.');
-                }
-                currentQuestionIndex = (currentQuestionIndex + 1) % data.length;
-                loadQuestion(currentQuestionIndex);
-            };
+        const currentQuestion = questions[index];
+        questionElement.textContent = currentQuestion.Question;
+        answerElements.forEach((element, i) => {
+            element.textContent = currentQuestion[`Answer${i + 1}`];
+            element.className = ''; // Reset classes
+        });
+    }
 
-            loadQuestion(currentQuestionIndex);
-        })
-        .catch(error => console.error('Error loading questions:', error));
+    function selectAnswer(index) {
+        answerElements.forEach((el, i) => {
+            el.classList.toggle('selected', i === index - 1);
+        });
+        document.querySelector('#submit').dataset.selectedAnswer = index;
+    }
+
+    async function submitAnswer() {
+        const selectedIndex = parseInt(document.querySelector('#submit').dataset.selectedAnswer, 10);
+        if (!selectedIndex) {
+            alert('Please select an answer.');
+            return;
+        }
+
+        const currentQuestion = questions[currentQuestionIndex];
+        if (selectedIndex === currentQuestion.Answer) {
+            alert('Correct!');
+            await makeApiCall(); // Call API for correct answers
+            window.location.href = '../index.php'; // Redirect to the homepage
+        } else {
+            alert('Incorrect. Try the next question!');
+            currentQuestionIndex++;
+            loadQuestion(currentQuestionIndex); // Load the next question
+        }
+    }
+
+    async function makeApiCall() {
+        try {
+            await fetch('https://example.com/api/endpoint', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: 123, score: 1 }) // Replace with your logic
+            });
+        } catch (error) {
+            console.error('Error making API call:', error);
+        }
+    }
+
+    loadQuestion(currentQuestionIndex);
 });
