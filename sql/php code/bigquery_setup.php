@@ -33,11 +33,39 @@ function selectTable($projectId, $query)
         return $output_arr;
     }
 }
+function updateTable($projectId, $query)
+{
+    try {
+        // Initialize BigQuery client
+        $bigQuery = new Google\Cloud\BigQuery\BigQueryClient([
+            'projectId' => $projectId,
+        ]);
+
+        // Execute the query
+        $queryJob = $bigQuery->runQuery($bigQuery->query($query));
+
+        // Wait for the query to complete
+        $queryJob->waitUntilComplete();
+
+        // Check if the query was successful
+        if (!$queryJob->isComplete()) {
+            throw new Exception('Query did not complete successfully.');
+        }
+
+        return true; // Indicate success
+    } catch (Exception $e) {
+        // Handle errors
+        return 'Error: ' . $e->getMessage();
+    }
+}
 
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     $projectId = 'nielson-4160-f24';
     $query = 'SELECT * FROM `pixelbytes.addition` LIMIT 10';
+    // test update query
+    //$query = "UPDATE `nielson-4160-f24.pixelbytes.addition` SET Correct = TRUE WHERE LearnID = 'AB5'";
     echo '<pre>' . print_r(selectTable($projectId, $query), true) . '</pre>';
+    //echo '<pre>' . print_r(updateTable($projectId, $query), true) . '</pre>';
 }
 
 ?>
