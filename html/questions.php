@@ -112,8 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 </header>
 <body class="body">
-    <div class="questionContainer">
-        <form method="POST" action="./questions.php">
+    <div>
+        <form method="POST" action="./questions.php" class="questionContainer">
             <div class="div8" id="question"><?= htmlspecialchars($current_question['Question'], ENT_QUOTES, 'UTF-8') ?></div>
             <div class="div9">
                 <input type="radio" name="answer" value="0" id="answer1" required />
