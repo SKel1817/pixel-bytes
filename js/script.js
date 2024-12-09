@@ -28,6 +28,23 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+// Function to re-enable the feed button 
+function enableFeedButton() {
+  const feedButton = document.getElementById('feed');
+  feedButton.disabled = false;
+  feedButton.style.filter = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const answers = document.querySelectorAll('.questionContainer > div:not(.div8, .div13)');
+    answers.forEach(answer => {
+        answer.addEventListener('click', () => {
+            answers.forEach(a => a.classList.remove('selected'));
+            answer.classList.add('selected');
+        });
+    });
+});
+
 $(document).ready(function() {
     // Update hunger level immediately upon page load and every 12 hours
     function updateHungerLevel() {
@@ -126,47 +143,3 @@ function saveAvatar() {
   });
 }
 / ```````````````````````````````````````````````````````````````````````````````````````````````````` / 
-
-var subjectObject = {
-  "Coding": {
-    "Beginner": ["Python", "Java", "C++"],
-    "Intermediate":["Python", "Java", "C++"],
-    "Advanced": ["Python", "Java", "C++"]
-  },
-  "Math": {
-    "Beginner": ["Addition", "Subtraction", "Multiplication", "Division"],
-    "Intermediate":["Addition", "Subtraction", "Multiplication", "Division"],
-    "Advanced": ["Addition", "Subtraction", "Multiplication", "Division"]
-  },
-  "Fish" : {
-    "Beginner": ["Habitat", "Food", "Species"],
-    "Intermediate":["Habitat", "Food", "Species"],
-    "Advanced": ["Habitat", "Food", "Species"]
-  }
-}
-window.onload = function() {
-  var subjectSel = document.getElementById("subject");
-  var levelSel = document.getElementById("level");
-  var categorySel = document.getElementById("category");
-  for (var x in subjectObject) {
-    subjectSel.options[subjectSel.options.length] = new Option(x, x);
-  }
-  subjectSel.onchange = function() {
-    //empty Chapters- and Topics- dropdowns
-    categorySel.length = 1;
-    levelSel.length = 1;
-    //display correct values
-    for (var y in subjectObject[this.value]) {
-      levelSel.options[levelSel.options.length] = new Option(y, y);
-    }
-  }
-  levelSel.onchange = function() {
-    //empty Chapters dropdown
-    categorySel.length = 1;
-    //display correct values
-    var z = subjectObject[subjectSel.value][this.value];
-    for (var i = 0; i < z.length; i++) {
-      categorySel.options[categorySel.options.length] = new Option(z[i], z[i]);
-    }
-  }
-}

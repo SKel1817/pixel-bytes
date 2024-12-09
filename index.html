@@ -13,7 +13,7 @@
 
 <header>
     <nav class="nav">
-        <img src="./media/gear.png" alt="PixelBytes Logo" height="25px" />
+        <a href="./index.html"><img src="./media/gear.png" alt="PixelBytes Logo" height="25px" /></a>
         <div class="logo">PixelBytes</div>
         <div class="food">
             <img src="./media/gear.png" alt="PixelBytes Logo" height="20px" />
@@ -51,18 +51,21 @@
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            <button class="saveButton" onclick="saveAvatar()">Save Avatar</button>
           </div>
 </br>
-          <div style="text-align:center">
+          <!-- <div style="text-align:center">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
+          </div> -->
+        </div>
+
+          <div class="div2">
+            <button class="saveButton" onclick="saveAvatar()">Save Avatar</button>
           </div>
 
-        </div>
-        <div class="div2">
+        <div class="div3">
           <div class="weatherContainer">
             <a class="weatherwidget-io" href="https://forecast7.com/en/42d66n83d15/rochester-hills/" data-label_1="ROCHESTER HILLS" data-label_2="WEATHER" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="original" >ROCHESTER HILLS WEATHER</a>
             <script>
@@ -70,15 +73,18 @@
             </script>
           </div>
         </div>
-        <div class="div3">3</div>
         <div class="div4">
           <div class="learnBtnContainer">
-            <button class="learnButton">LEARN</button>
+            <a href="./html/learn.html"><button class="learnButton">LEARN</button></a>
           </div>
         </div>
         <div class="div5">
           <div class="feedContainer">
-            <button id="feed" class="feedButton">FEED</button>
+            <button id="feed" class="feedButton" disabled>FEED</button>
+          </div>
+        </div>
+        <div class="divStarve">
+          <div class="starveContainer">
             <button id="starve" class="starveButton">STARVE for testing only</button>
           </div>
         </div>
